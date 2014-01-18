@@ -148,15 +148,18 @@ if(RR_BUILD_SHARED_CORE)
         poco_foundation-static
         )
 
-    if(WIN32)
-        if(${BORLAND})
-            target_link_libraries (${target} libxml2_xe)
-        endif()
+    
+    # link with libxml, aperently borland can't link with a 
+    # conventional C library, need to be specially converted for borland
 
-        if(${MSVC})
-            target_link_libraries(${target} libxml2)
-        endif()
-    endif(WIN32)        
+    if(UNIX)
+	target_link_libraries(${target} xml2)       	 
+    elseif(${MSVC})
+	target_link_libraries (${target} libxml2)
+    elseif(${BORLAND})
+        target_link_libraries (${target} libxml2_xe)
+    endif()
+
 
     if (USE_POCO_NET)
     target_link_libraries (${target}

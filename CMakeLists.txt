@@ -98,10 +98,6 @@ OPTION (INSTALL_STATIC_LIB      "Install RoadRunner CXX static lib"             
 OPTION (RR_BUILD_SHARED_CORE    "Build RoadRunner Core Shared library"           ON)
 OPTION (BUILD_TESTS             "Build the SBML C API test suite"                OFF)
 OPTION (INSTALL_SBML_MODELS     "Install SBML Models"                            ON )
-OPTION (RRP_BUILD_PLUGINS_API   "Build RoadRunners Plugin API"                   ON)
-OPTION (RRP_BUILD_PLUGINS_C_API "Build RoadRunners C Plugin API"                 ON)
-OPTION (RRP_BUILD_PLUGINS       "Build RoadRunners Plugins"                      OFF)
-OPTION (RRP_BUILD_EXAMPLES      "Build Plugins Examples"                         OFF)
 
 #Setup so that roadrunner is always built as a dll and linked statically with 'as much as possible'
 set(BUILD_SHARED_LIBS            ON)
@@ -259,17 +255,6 @@ else()
     message(STATUS "NOT building tests")
 endif(BUILD_TEST_TOOLS)
 
-if(RRP_BUILD_PLUGINS_API)
-    message(STATUS "building plugins")
-    add_subdirectory(libplugins)
-else()
-    message(STATUS "NOT building plugins")
-endif(RRP_BUILD_PLUGINS_API)
-
-if(RRP_BUILD_PLUGINS)
-    message(STATUS "Building RoadRunner Plugins")
-    add_subdirectory(plugins)
-endif(RRP_BUILD_PLUGINS)
 
 #======================= INSTALL STUFF ========================================================
 #What sub folders to move into...?
